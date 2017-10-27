@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ea95cdd093c0435fa3ee00e7bee2123c" Name="Diagram1">
+        <EntityTypeShape EntityType="DB_A2C0AC_3elagonlineModel.Advertisment" Width="1.5" PointX="10.5" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A2C0AC_3elagonlineModel.Article" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A2C0AC_3elagonlineModel.Country" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A2C0AC_3elagonlineModel.Order" Width="1.5" PointX="7.5" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A2C0AC_3elagonlineModel.OrderedProduct" Width="1.5" PointX="12.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A2C0AC_3elagonlineModel.OrderQueue" Width="1.5" PointX="12.75" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A2C0AC_3elagonlineModel.Pharmacy" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A2C0AC_3elagonlineModel.Product" Width="1.5" PointX="8.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A2C0AC_3elagonlineModel.State" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A2C0AC_3elagonlineModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A2C0AC_3elagonlineModel.User" Width="1.5" PointX="5.25" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A2C0AC_3elagonlineModel.Users_Admin" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A2C0AC_3elagonlineModel.Users_Pharmacy" Width="1.5" PointX="7.5" PointY="13.25" IsExpanded="true" />
+        <AssociationConnector Association="DB_A2C0AC_3elagonlineModel.FK_Advertisment_Pharmacy" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A2C0AC_3elagonlineModel.FK_Advertisment_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A2C0AC_3elagonlineModel.FK_OrderedProducts_Advertisment" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A2C0AC_3elagonlineModel.FK_OrderQueue_Advertisment" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A2C0AC_3elagonlineModel.FK_State_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A2C0AC_3elagonlineModel.FK_Order_State" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A2C0AC_3elagonlineModel.FK_Order_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A2C0AC_3elagonlineModel.FK_OrderQueue_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A2C0AC_3elagonlineModel.FK_Pharmacy_State" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A2C0AC_3elagonlineModel.FK_Users_Pharmacy_Pharmacy" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A2C0AC_3elagonlineModel.FK_Users_State" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

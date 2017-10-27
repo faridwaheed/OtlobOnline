@@ -1,0 +1,876 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DB_A2C0AC_3elagonlineModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Advertisment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PharmacyId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="publish_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description_ar" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="description_en" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="image" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="publish_date" Type="datetime" Nullable="false" />
+          <Property Name="end_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_ar" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Name_en" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Currency" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="state_Id" Type="int" Nullable="false" />
+          <Property Name="address" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="OrderTime" Type="datetime" Nullable="false" />
+          <Property Name="paid_type" Type="int" Nullable="false" />
+          <Property Name="total" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderedProducts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Order_Id" Type="int" Nullable="false" />
+          <Property Name="Advertisment_Id" Type="int" Nullable="false" />
+          <Property Name="Qty" Type="int" Nullable="false" />
+          <Property Name="Price" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderQueue">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_Id" Type="int" Nullable="false" />
+          <Property Name="Advertisment_Id" Type="int" Nullable="false" />
+          <Property Name="Qty" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pharmacy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_ar" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Name_en" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="state_id" Type="int" Nullable="false" />
+          <Property Name="Address_ar" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Address_en" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Telephone" Type="nchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_ar" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Name_en" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="ActiveIngredient_ar" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="ActiveIngredient_en" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Manufacturer_ar" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Manufacturer_en" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="ProductType_ar" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="ProductType_en" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="description_ar" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="description_en" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Image" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="country_id" Type="int" Nullable="false" />
+          <Property Name="Name_ar" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Name_en" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="UserEmail" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="state_id" Type="int" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Phone" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="active_state" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users_Admin">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users_Pharmacy">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="pharmacyId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Advertisment_Pharmacy">
+          <End Role="Pharmacy" Type="Self.Pharmacy" Multiplicity="1" />
+          <End Role="Advertisment" Type="Self.Advertisment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pharmacy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Advertisment">
+              <PropertyRef Name="PharmacyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Advertisment_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Advertisment" Type="Self.Advertisment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="Advertisment">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_State">
+          <End Role="State" Type="Self.State" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="state_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderedProducts_Advertisment">
+          <End Role="Advertisment" Type="Self.Advertisment" Multiplicity="1" />
+          <End Role="OrderedProducts" Type="Self.OrderedProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Advertisment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderedProducts">
+              <PropertyRef Name="Advertisment_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderQueue_Advertisment">
+          <End Role="Advertisment" Type="Self.Advertisment" Multiplicity="1" />
+          <End Role="OrderQueue" Type="Self.OrderQueue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Advertisment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderQueue">
+              <PropertyRef Name="Advertisment_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderQueue_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="OrderQueue" Type="Self.OrderQueue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderQueue">
+              <PropertyRef Name="user_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pharmacy_State">
+          <End Role="State" Type="Self.State" Multiplicity="1" />
+          <End Role="Pharmacy" Type="Self.Pharmacy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pharmacy">
+              <PropertyRef Name="state_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_State_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="State" Type="Self.State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="State">
+              <PropertyRef Name="country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Pharmacy_Pharmacy">
+          <End Role="Pharmacy" Type="Self.Pharmacy" Multiplicity="1" />
+          <End Role="Users_Pharmacy" Type="Self.Users_Pharmacy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pharmacy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users_Pharmacy">
+              <PropertyRef Name="pharmacyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_State">
+          <End Role="State" Type="Self.State" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="state_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_A2C0AC_3elagonlineModelStoreContainer">
+          <EntitySet Name="Advertisment" EntityType="Self.Advertisment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderedProducts" EntityType="Self.OrderedProducts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderQueue" EntityType="Self.OrderQueue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pharmacy" EntityType="Self.Pharmacy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users_Admin" EntityType="Self.Users_Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users_Pharmacy" EntityType="Self.Users_Pharmacy" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Advertisment_Pharmacy" Association="Self.FK_Advertisment_Pharmacy">
+            <End Role="Pharmacy" EntitySet="Pharmacy" />
+            <End Role="Advertisment" EntitySet="Advertisment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Advertisment_Product" Association="Self.FK_Advertisment_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Advertisment" EntitySet="Advertisment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_State" Association="Self.FK_Order_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Users" Association="Self.FK_Order_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderedProducts_Advertisment" Association="Self.FK_OrderedProducts_Advertisment">
+            <End Role="Advertisment" EntitySet="Advertisment" />
+            <End Role="OrderedProducts" EntitySet="OrderedProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderQueue_Advertisment" Association="Self.FK_OrderQueue_Advertisment">
+            <End Role="Advertisment" EntitySet="Advertisment" />
+            <End Role="OrderQueue" EntitySet="OrderQueue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderQueue_Users" Association="Self.FK_OrderQueue_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="OrderQueue" EntitySet="OrderQueue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pharmacy_State" Association="Self.FK_Pharmacy_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="Pharmacy" EntitySet="Pharmacy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_State_Country" Association="Self.FK_State_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="State" EntitySet="State" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Pharmacy_Pharmacy" Association="Self.FK_Users_Pharmacy_Pharmacy">
+            <End Role="Pharmacy" EntitySet="Pharmacy" />
+            <End Role="Users_Pharmacy" EntitySet="Users_Pharmacy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_State" Association="Self.FK_Users_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_A2C0AC_3elagonlineModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Advertisment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PharmacyId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="publish_date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Pharmacy" Relationship="Self.FK_Advertisment_Pharmacy" FromRole="Advertisment" ToRole="Pharmacy" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Advertisment_Product" FromRole="Advertisment" ToRole="Product" />
+          <NavigationProperty Name="OrderedProducts" Relationship="Self.FK_OrderedProducts_Advertisment" FromRole="Advertisment" ToRole="OrderedProducts" />
+          <NavigationProperty Name="OrderQueues" Relationship="Self.FK_OrderQueue_Advertisment" FromRole="Advertisment" ToRole="OrderQueue" />
+        </EntityType>
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description_ar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description_en" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="publish_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="end_date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_ar" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name_en" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Currency" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="States" Relationship="Self.FK_State_Country" FromRole="Country" ToRole="State" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="state_Id" Type="Int32" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OrderTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="paid_type" Type="Int32" Nullable="false" />
+          <Property Name="total" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="State" Relationship="Self.FK_Order_State" FromRole="Order" ToRole="State" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Order_Users" FromRole="Order" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="OrderedProduct">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Order_Id" Type="Int32" Nullable="false" />
+          <Property Name="Advertisment_Id" Type="Int32" Nullable="false" />
+          <Property Name="Qty" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Advertisment" Relationship="Self.FK_OrderedProducts_Advertisment" FromRole="OrderedProducts" ToRole="Advertisment" />
+        </EntityType>
+        <EntityType Name="OrderQueue">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_Id" Type="Int32" Nullable="false" />
+          <Property Name="Advertisment_Id" Type="Int32" Nullable="false" />
+          <Property Name="Qty" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Advertisment" Relationship="Self.FK_OrderQueue_Advertisment" FromRole="OrderQueue" ToRole="Advertisment" />
+          <NavigationProperty Name="User" Relationship="Self.FK_OrderQueue_Users" FromRole="OrderQueue" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Pharmacy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_ar" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name_en" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="state_id" Type="Int32" Nullable="false" />
+          <Property Name="Address_ar" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address_en" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telephone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Advertisments" Relationship="Self.FK_Advertisment_Pharmacy" FromRole="Pharmacy" ToRole="Advertisment" />
+          <NavigationProperty Name="State" Relationship="Self.FK_Pharmacy_State" FromRole="Pharmacy" ToRole="State" />
+          <NavigationProperty Name="Users_Pharmacy" Relationship="Self.FK_Users_Pharmacy_Pharmacy" FromRole="Pharmacy" ToRole="Users_Pharmacy" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_ar" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name_en" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ActiveIngredient_ar" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ActiveIngredient_en" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Manufacturer_ar" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Manufacturer_en" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductType_ar" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductType_en" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description_ar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description_en" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Advertisments" Relationship="Self.FK_Advertisment_Product" FromRole="Product" ToRole="Advertisment" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="country_id" Type="Int32" Nullable="false" />
+          <Property Name="Name_ar" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name_en" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Country" Relationship="Self.FK_State_Country" FromRole="State" ToRole="Country" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_State" FromRole="State" ToRole="Order" />
+          <NavigationProperty Name="Pharmacies" Relationship="Self.FK_Pharmacy_State" FromRole="State" ToRole="Pharmacy" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_State" FromRole="State" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="state_id" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="active_state" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Users" FromRole="Users" ToRole="Order" />
+          <NavigationProperty Name="OrderQueues" Relationship="Self.FK_OrderQueue_Users" FromRole="Users" ToRole="OrderQueue" />
+          <NavigationProperty Name="State" Relationship="Self.FK_Users_State" FromRole="Users" ToRole="State" />
+        </EntityType>
+        <EntityType Name="Users_Admin">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users_Pharmacy">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="pharmacyId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pharmacy" Relationship="Self.FK_Users_Pharmacy_Pharmacy" FromRole="Users_Pharmacy" ToRole="Pharmacy" />
+        </EntityType>
+        <Association Name="FK_Advertisment_Pharmacy">
+          <End Role="Pharmacy" Type="Self.Pharmacy" Multiplicity="1" />
+          <End Role="Advertisment" Type="Self.Advertisment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pharmacy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Advertisment">
+              <PropertyRef Name="PharmacyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Advertisment_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Advertisment" Type="Self.Advertisment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="Advertisment">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderedProducts_Advertisment">
+          <End Role="Advertisment" Type="Self.Advertisment" Multiplicity="1" />
+          <End Role="OrderedProducts" Type="Self.OrderedProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Advertisment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderedProducts">
+              <PropertyRef Name="Advertisment_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderQueue_Advertisment">
+          <End Role="Advertisment" Type="Self.Advertisment" Multiplicity="1" />
+          <End Role="OrderQueue" Type="Self.OrderQueue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Advertisment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderQueue">
+              <PropertyRef Name="Advertisment_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_State_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="State" Type="Self.State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="State">
+              <PropertyRef Name="country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_State">
+          <End Role="State" Type="Self.State" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="state_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderQueue_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="OrderQueue" Type="Self.OrderQueue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderQueue">
+              <PropertyRef Name="user_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pharmacy_State">
+          <End Role="State" Type="Self.State" Multiplicity="1" />
+          <End Role="Pharmacy" Type="Self.Pharmacy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pharmacy">
+              <PropertyRef Name="state_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Pharmacy_Pharmacy">
+          <End Role="Pharmacy" Type="Self.Pharmacy" Multiplicity="1" />
+          <End Role="Users_Pharmacy" Type="Self.Users_Pharmacy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pharmacy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users_Pharmacy">
+              <PropertyRef Name="pharmacyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_State">
+          <End Role="State" Type="Self.State" Multiplicity="1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="state_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Advertisments" EntityType="Self.Advertisment" />
+          <EntitySet Name="Articles" EntityType="Self.Article" />
+          <EntitySet Name="Countries" EntityType="Self.Country" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="OrderedProducts" EntityType="Self.OrderedProduct" />
+          <EntitySet Name="OrderQueues" EntityType="Self.OrderQueue" />
+          <EntitySet Name="Pharmacies" EntityType="Self.Pharmacy" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="States" EntityType="Self.State" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Users_Admin" EntityType="Self.Users_Admin" />
+          <EntitySet Name="Users_Pharmacy" EntityType="Self.Users_Pharmacy" />
+          <AssociationSet Name="FK_Advertisment_Pharmacy" Association="Self.FK_Advertisment_Pharmacy">
+            <End Role="Pharmacy" EntitySet="Pharmacies" />
+            <End Role="Advertisment" EntitySet="Advertisments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Advertisment_Product" Association="Self.FK_Advertisment_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Advertisment" EntitySet="Advertisments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderedProducts_Advertisment" Association="Self.FK_OrderedProducts_Advertisment">
+            <End Role="Advertisment" EntitySet="Advertisments" />
+            <End Role="OrderedProducts" EntitySet="OrderedProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderQueue_Advertisment" Association="Self.FK_OrderQueue_Advertisment">
+            <End Role="Advertisment" EntitySet="Advertisments" />
+            <End Role="OrderQueue" EntitySet="OrderQueues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_State_Country" Association="Self.FK_State_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="State" EntitySet="States" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_State" Association="Self.FK_Order_State">
+            <End Role="State" EntitySet="States" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Users" Association="Self.FK_Order_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderQueue_Users" Association="Self.FK_OrderQueue_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="OrderQueue" EntitySet="OrderQueues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pharmacy_State" Association="Self.FK_Pharmacy_State">
+            <End Role="State" EntitySet="States" />
+            <End Role="Pharmacy" EntitySet="Pharmacies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Pharmacy_Pharmacy" Association="Self.FK_Users_Pharmacy_Pharmacy">
+            <End Role="Pharmacy" EntitySet="Pharmacies" />
+            <End Role="Users_Pharmacy" EntitySet="Users_Pharmacy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_State" Association="Self.FK_Users_State">
+            <End Role="State" EntitySet="States" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_A2C0AC_3elagonlineModelStoreContainer" CdmEntityContainer="DBEntities">
+          <EntitySetMapping Name="Advertisments">
+            <EntityTypeMapping TypeName="DB_A2C0AC_3elagonlineModel.Advertisment">
+              <MappingFragment StoreEntitySet="Advertisment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PharmacyId" ColumnName="PharmacyId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="publish_date" ColumnName="publish_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Articles">
+            <EntityTypeMapping TypeName="DB_A2C0AC_3elagonlineModel.Article">
+              <MappingFragment StoreEntitySet="Article">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="description_ar" ColumnName="description_ar" />
+                <ScalarProperty Name="description_en" ColumnName="description_en" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="publish_date" ColumnName="publish_date" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="DB_A2C0AC_3elagonlineModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name_ar" ColumnName="Name_ar" />
+                <ScalarProperty Name="Name_en" ColumnName="Name_en" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="DB_A2C0AC_3elagonlineModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="state_Id" ColumnName="state_Id" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="OrderTime" ColumnName="OrderTime" />
+                <ScalarProperty Name="paid_type" ColumnName="paid_type" />
+                <ScalarProperty Name="total" ColumnName="total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderedProducts">
+            <EntityTypeMapping TypeName="DB_A2C0AC_3elagonlineModel.OrderedProduct">
+              <MappingFragment StoreEntitySet="OrderedProducts">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
+                <ScalarProperty Name="Advertisment_Id" ColumnName="Advertisment_Id" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderQueues">
+            <EntityTypeMapping TypeName="DB_A2C0AC_3elagonlineModel.OrderQueue">
+              <MappingFragment StoreEntitySet="OrderQueue">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_Id" ColumnName="user_Id" />
+                <ScalarProperty Name="Advertisment_Id" ColumnName="Advertisment_Id" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pharmacies">
+            <EntityTypeMapping TypeName="DB_A2C0AC_3elagonlineModel.Pharmacy">
+              <MappingFragment StoreEntitySet="Pharmacy">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name_ar" ColumnName="Name_ar" />
+                <ScalarProperty Name="Name_en" ColumnName="Name_en" />
+                <ScalarProperty Name="state_id" ColumnName="state_id" />
+                <ScalarProperty Name="Address_ar" ColumnName="Address_ar" />
+                <ScalarProperty Name="Address_en" ColumnName="Address_en" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="DB_A2C0AC_3elagonlineModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Name_ar" ColumnName="Name_ar" />
+                <ScalarProperty Name="Name_en" ColumnName="Name_en" />
+                <ScalarProperty Name="ActiveIngredient_ar" ColumnName="ActiveIngredient_ar" />
+                <ScalarProperty Name="ActiveIngredient_en" ColumnName="ActiveIngredient_en" />
+                <ScalarProperty Name="Manufacturer_ar" ColumnName="Manufacturer_ar" />
+                <ScalarProperty Name="Manufacturer_en" ColumnName="Manufacturer_en" />
+                <ScalarProperty Name="ProductType_ar" ColumnName="ProductType_ar" />
+                <ScalarProperty Name="ProductType_en" ColumnName="ProductType_en" />
+                <ScalarProperty Name="description_ar" ColumnName="description_ar" />
+                <ScalarProperty Name="description_en" ColumnName="description_en" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="DB_A2C0AC_3elagonlineModel.State">
+              <MappingFragment StoreEntitySet="State">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+                <ScalarProperty Name="Name_ar" ColumnName="Name_ar" />
+                <ScalarProperty Name="Name_en" ColumnName="Name_en" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DB_A2C0AC_3elagonlineModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="DB_A2C0AC_3elagonlineModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="state_id" ColumnName="state_id" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="active_state" ColumnName="active_state" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users_Admin">
+            <EntityTypeMapping TypeName="DB_A2C0AC_3elagonlineModel.Users_Admin">
+              <MappingFragment StoreEntitySet="Users_Admin">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users_Pharmacy">
+            <EntityTypeMapping TypeName="DB_A2C0AC_3elagonlineModel.Users_Pharmacy">
+              <MappingFragment StoreEntitySet="Users_Pharmacy">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="pharmacyId" ColumnName="pharmacyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
